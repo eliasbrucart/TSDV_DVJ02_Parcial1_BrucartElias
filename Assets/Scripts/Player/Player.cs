@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector3 initialPos;
     [SerializeField] Vector3 point;
     [SerializeField] float distanceRayCast;
+    [SerializeField] GameObject bombPrefab;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovePlayer();
+        SpawnBomb();
     }
 
     private void MovePlayer()
@@ -56,5 +58,13 @@ public class Player : MonoBehaviour
             if (hit.collider.gameObject.tag == "NormalColumn")
                 return true;
         return false;
+    }
+
+    void SpawnBomb()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bombPrefab, transform.position, Quaternion.identity);
+        }
     }
 }
