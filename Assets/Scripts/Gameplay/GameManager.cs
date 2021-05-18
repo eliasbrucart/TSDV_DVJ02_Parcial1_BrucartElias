@@ -1,16 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    static public GameManager instanceGameManager;
+
+    static public GameManager Instance{ get { return instanceGameManager; } }
+
+    private void Awake()
+    {
+        if(instanceGameManager != null && instanceGameManager != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instanceGameManager = this;
+        }
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
