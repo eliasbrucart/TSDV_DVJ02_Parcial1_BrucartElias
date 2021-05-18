@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
 
     private bool CheckColumn(Vector3 dir)
     {
+        transform.LookAt(transform.position + dir);
         Ray ray = new Ray(transform.position, dir);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distanceRayCast))
