@@ -8,7 +8,7 @@ public class SpawnDesColumn : MonoBehaviour
     [SerializeField] int minZ;
     [SerializeField] int maxZ;
     [SerializeField] float gridY;
-    [SerializeField] float spacing = 1.0f;
+    //[SerializeField] float spacing = 1.0f;
     [SerializeField] Vector3 gridOrigin = Vector3.zero;
     [SerializeField] int columnsAmount;
 

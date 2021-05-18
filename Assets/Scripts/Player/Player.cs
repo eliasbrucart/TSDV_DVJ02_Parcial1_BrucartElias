@@ -5,9 +5,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Vector3 initialPos;
     [SerializeField] Vector3 point;
-
-    private float distance;
-    private float minDistance = 0.1f;
+    [SerializeField] float distanceRayCast;
 
     void Start()
     {
@@ -21,20 +19,19 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
-        distance = Vector3.Distance(transform.position, point);
-        if (Input.GetKeyDown(KeyCode.UpArrow) && distance < minDistance)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !CheckColumn(Vector3.forward))
         {
             point += Vector3.forward;
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow) && distance < minDistance)
+        if(Input.GetKeyDown(KeyCode.DownArrow) && !CheckColumn(Vector3.back))
         {
             point += Vector3.back;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && distance < minDistance)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !CheckColumn(Vector3.left))
         {
             point += Vector3.left;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && distance < minDistance)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !CheckColumn(Vector3.right))
         {
             point += Vector3.right;
         }
@@ -48,5 +45,15 @@ public class Player : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime * speed);    
         }
+    }
+
+    private bool CheckColumn(Vector3 dir)
+    {
+        Ray ray = new Ray(transform.position, dir);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, distanceRayCast))
+            if (hit.collider.gameObject.tag == "NormalColumn")
+                return true;
+        return false;
     }
 }
