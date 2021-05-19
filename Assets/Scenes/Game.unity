@@ -418,6 +418,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6778170270246383427, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
         type: 3}
+      propertyPath: lives
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -6778170270246383427, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
+        type: 3}
       propertyPath: point
       value: 
       objectReference: {fileID: 0}
@@ -621,12 +626,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NormalColumn
       objectReference: {fileID: 0}
+    - target: {fileID: 9105741116252780721, guid: a6bb25f607f6ba14e8573193d6e8134a,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalColumn
+      objectReference: {fileID: 0}
     - target: {fileID: 9105741116252780726, guid: a6bb25f607f6ba14e8573193d6e8134a,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -9.41
       objectReference: {fileID: 0}
     - target: {fileID: 9105741116254150303, guid: a6bb25f607f6ba14e8573193d6e8134a,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalColumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105741116263490378, guid: a6bb25f607f6ba14e8573193d6e8134a,
         type: 3}
       propertyPath: m_TagString
       value: NormalColumn
@@ -787,6 +802,11 @@ PrefabInstance:
       value: NormalColumn
       objectReference: {fileID: 0}
     - target: {fileID: 9105741116790785135, guid: a6bb25f607f6ba14e8573193d6e8134a,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalColumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105741116802130901, guid: a6bb25f607f6ba14e8573193d6e8134a,
         type: 3}
       propertyPath: m_TagString
       value: NormalColumn
@@ -1227,6 +1247,11 @@ PrefabInstance:
       value: Level
       objectReference: {fileID: 0}
     - target: {fileID: 9105741118114490110, guid: a6bb25f607f6ba14e8573193d6e8134a,
+        type: 3}
+      propertyPath: m_TagString
+      value: NormalColumn
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105741118119788051, guid: a6bb25f607f6ba14e8573193d6e8134a,
         type: 3}
       propertyPath: m_TagString
       value: NormalColumn

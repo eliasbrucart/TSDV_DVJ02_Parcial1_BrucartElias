@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] float distanceRayCast;
     [SerializeField] GameObject bombPrefab;
     [SerializeField] private bool canSpawnBomb;
+    [SerializeField] private int lives;
+
     public Bomb bomb;
 
     void Start()
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
         point = transform.position;
         canSpawnBomb = true;
         Bomb.BombExploded += BombExploded;
+        Bomb.PlayerReciveDamage += ReciveDamage;
     }
     void Update()
     {
@@ -74,13 +76,20 @@ public class Player : MonoBehaviour
         }
     }
 
-    void BombExploded(Bomb bomb)
+    void BombExploded()
     {
         canSpawnBomb = true;
+    }
+
+    void ReciveDamage()
+    {
+        if(lives > 0)
+            lives--;
     }
 
     private void OnDisable()
     {
         Bomb.BombExploded -= BombExploded;
+        Bomb.PlayerReciveDamage -= ReciveDamage;
     }
 }

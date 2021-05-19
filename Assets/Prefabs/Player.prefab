@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5363144024040448912}
   m_Layer: 0
   m_Name: nose
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5363144025005732315}
   m_Layer: 0
   m_Name: eye1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 5363144025357930786}
   m_Layer: 0
   m_Name: eye2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: -6778170270246383427}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,3 +390,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  initialPos: {x: 0, y: 0, z: 0}
+  point: {x: 0, y: 0, z: 0}
+  distanceRayCast: 0
+  bombPrefab: {fileID: 0}
+  canSpawnBomb: 0
+  lives: 0
+  bomb: {fileID: 0}
