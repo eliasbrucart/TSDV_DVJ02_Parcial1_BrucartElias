@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
 
     void SpawnBomb()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canSpawnBomb)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) && canSpawnBomb)
         {
             Instantiate(bombPrefab, transform.position, Quaternion.identity);
             canSpawnBomb = false;
