@@ -8,11 +8,15 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 point;
     [SerializeField] float distanceRayCast;
     [SerializeField] GameObject bombPrefab;
+    [SerializeField] private bool canSpawnBomb;
+    public Bomb bomb;
 
     void Start()
     {
         transform.position = initialPos;
         point = transform.position;
+        canSpawnBomb = true;
+        Bomb.BombExploded += BombExploded;
     }
     void Update()
     {
@@ -63,9 +67,20 @@ public class Player : MonoBehaviour
 
     void SpawnBomb()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canSpawnBomb)
         {
             Instantiate(bombPrefab, transform.position, Quaternion.identity);
+            canSpawnBomb = false;
         }
+    }
+
+    void BombExploded(Bomb bomb)
+    {
+        canSpawnBomb = true;
+    }
+
+    private void OnDisable()
+    {
+        Bomb.BombExploded -= BombExploded;
     }
 }

@@ -407,6 +407,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6778170270246383427, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
         type: 3}
+      propertyPath: bomb
+      value: 
+      objectReference: {fileID: -3757928447852437793, guid: 424e97155841e7444bdfca52489c75a5,
+        type: 3}
+    - target: {fileID: -6778170270246383427, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
+        type: 3}
       propertyPath: pepe
       value: 0
       objectReference: {fileID: 0}

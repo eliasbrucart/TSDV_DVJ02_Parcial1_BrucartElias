@@ -7,12 +7,13 @@ public class Bomb : MonoBehaviour
     [SerializeField] private float timeToExplode;
 
     private float timerToExplode;
-    private bool destroyed = false;
+    private bool destroyed;
 
     static public event Action<Bomb> BombExploded;
 
     void Start()
     {
+        destroyed = false;
         timerToExplode = 0.0f;
     }
 
@@ -27,9 +28,10 @@ public class Bomb : MonoBehaviour
     {
         if (!destroyed)
         {
-            Destroy(this.gameObject);
             timerToExplode = 0.0f;
             destroyed = true;
+            BombExploded?.Invoke(this);
+            Destroy(this.gameObject);
         }
     }
 }
