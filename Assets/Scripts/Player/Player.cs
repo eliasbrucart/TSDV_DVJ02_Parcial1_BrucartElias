@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] float distanceRayCast;
     [SerializeField] GameObject bombPrefab;
     [SerializeField] private bool canSpawnBomb;
-    [SerializeField] private int lives;
+    [SerializeField] public int lives { get; set; }
 
     public Bomb bomb;
 
