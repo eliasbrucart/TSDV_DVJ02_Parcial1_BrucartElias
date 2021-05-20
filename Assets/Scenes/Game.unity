@@ -346,6 +346,30 @@ MonoBehaviour:
   player: {fileID: 130010575}
   cameraSpeed: 2
   offset: {x: 0, y: 5, z: -5}
+--- !u!1 &1299009748 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 685692507078242899, guid: 9230df7bdbbc8c644b71c29062b963a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 685692506060808839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1299009753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299009748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6f78c1ae372cd4090defb0eca420ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  speed: 3
+  actualPos: {x: 0.5, y: 0.4, z: -0.5}
+  raycastSize: 1
+  selectedDirection: 0
+  timeToChangeDirection: 10
 --- !u!1 &1730122474
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 685692507078242911, guid: 9230df7bdbbc8c644b71c29062b963a1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.435
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 685692507078242911, guid: 9230df7bdbbc8c644b71c29062b963a1,
         type: 3}
