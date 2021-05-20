@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         Ray ray = new Ray(transform.position, dir);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distanceRayCast))
-            if (hit.collider.gameObject.tag == "NormalColumn")
+            if (hit.collider.gameObject.tag == "NormalColumn" || hit.collider.gameObject.tag == "DestructibleColumn")
                 return true;
         return false;
     }
