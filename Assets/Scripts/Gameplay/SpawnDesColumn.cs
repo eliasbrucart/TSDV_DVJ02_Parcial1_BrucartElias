@@ -12,8 +12,8 @@ public class SpawnDesColumn : MonoBehaviour
     [SerializeField] Vector3 gridOrigin = Vector3.zero;
     [SerializeField] int columnsAmount;
 
-    private float centerOnX = 0.5f;
-    private float centerOnZ = 0.5f;
+    private float centerOnX = 12.0f;
+    private float centerOnZ = 8.0f;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class SpawnDesColumn : MonoBehaviour
             int z = 0;
             if ((CreatePosInX(ref x, minX, maxX) == true && CreatePosInZ(ref z, minZ, maxZ) == true) || (CreatePosInX(ref x, minX, maxX) == false && CreatePosInZ(ref z, minZ, maxZ) == false))
             {
-                Vector3 positionColumn = new Vector3(x-centerOnX, gridY, z+centerOnZ);
+                Vector3 positionColumn = new Vector3(x+centerOnX, gridY, z+centerOnZ);
                 GameObject go = Instantiate(destructibleColumn, positionColumn, Quaternion.identity);
                 columnsAmount--;
             }
