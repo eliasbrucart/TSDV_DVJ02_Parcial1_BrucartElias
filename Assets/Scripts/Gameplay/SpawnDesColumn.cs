@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SpawnDesColumn : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class SpawnDesColumn : MonoBehaviour
     private float centerOnX = 12.0f;
     private float centerOnZ = 8.0f;
 
-    void Start()
+    public List<Vector3> usedPos = new List<Vector3>();
+
+    void Awake()
     {
         SpawnDestructibleColumns();
     }
@@ -29,6 +32,7 @@ public class SpawnDesColumn : MonoBehaviour
             {
                 Vector3 positionColumn = new Vector3(x+centerOnX, gridY, z+centerOnZ);
                 GameObject go = Instantiate(destructibleColumn, positionColumn, Quaternion.identity);
+                usedPos.Add(go.transform.position);
                 columnsAmount--;
             }
         }
@@ -50,5 +54,16 @@ public class SpawnDesColumn : MonoBehaviour
             return false;
         else
             return true;
+    }
+
+    public bool UsedPos(int x, int z)
+    {
+        Debug.Log("x " + x + " z " + z);
+        for (int i = 0; i < usedPos.Count; i++)
+        {
+            if (x == usedPos[i].x && z == usedPos[i].z)
+                return true;
+        }
+        return false;
     }
 }

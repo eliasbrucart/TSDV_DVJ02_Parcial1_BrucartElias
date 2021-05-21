@@ -308,16 +308,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685692507078242899}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e6f78c1ae372cd4090defb0eca420ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
   speed: 3
+  actualPos: {x: 0, y: 0, z: 0}
   raycastSize: 1
-  canMove: 1
-  pointsToPlayer: 200
+  selectedDirection: 0
+  timeToChangeDirection: 0
 --- !u!1 &685692507126633266
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,17 @@ public class Enemy : MonoBehaviour
         ChangeDirection();
     }
 
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "DestructibleColumn")
+    //        ChangeSpawnPos();
+    //}
+    //
+    //void ChangeSpawnPos()
+    //{
+    //
+    //}
+
     void SetDirection(Directions dir)
     {
         switch (dir)
