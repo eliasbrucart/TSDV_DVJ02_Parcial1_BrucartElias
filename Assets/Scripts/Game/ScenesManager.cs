@@ -13,7 +13,6 @@ public class ScenesManager : MonoBehaviour
             Destroy(this.gameObject);
         else
             instanceScenesManager = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     public void ChangeScene(string scene)
