@@ -58,7 +58,6 @@ public class SpawnDesColumn : MonoBehaviour
 
     public bool UsedPos(int x, int z)
     {
-        Debug.Log("x " + x + " z " + z);
         for (int i = 0; i < usedPos.Count; i++)
         {
             if (x == usedPos[i].x && z == usedPos[i].z)

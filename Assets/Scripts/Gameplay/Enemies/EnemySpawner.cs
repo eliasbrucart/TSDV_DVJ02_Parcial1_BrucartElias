@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int maxX;
     [SerializeField] private int minZ;
     [SerializeField] private int maxZ;
-    [SerializeField] private int enemiesAmount;
+    public int enemiesAmount;
 
     [SerializeField] SpawnDesColumn spawnDesColumn;
 
