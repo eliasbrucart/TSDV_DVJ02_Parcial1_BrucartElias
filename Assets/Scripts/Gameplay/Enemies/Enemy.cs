@@ -1,169 +1,131 @@
-﻿using System.Threading;
-using UnityEditor.Experimental.GraphView;
+﻿using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public enum Directions
+    public enum Direction
     {
-        Forward,
-        Right,
+        Up,
+        Back,
         Left,
-        Back
+        Right,
     }
-    [SerializeField] private int health;
-    [SerializeField] private float speed;
-    [SerializeField] private Vector3 actualPos;
-    [SerializeField] private float raycastSize;
-    [SerializeField] private Directions selectedDirection;
-    [SerializeField] private float timeToChangeDirection;
 
-    private Vector3 direction;
-    private float timerToChangeDirection;
-    private bool changeDirection;
-    private bool isBloqued;
-    private Vector3 lastDirection;
-    private Vector3 newDirection;
+    [SerializeField] private Direction dir;
+    [SerializeField] private float speed;
+    float distance = 0.55f;
+    Vector3[] directions;
+    int actualPosX;
+    int actualPosZ;
+    int maxDirections = 4;
     void Start()
     {
-        transform.position = actualPos;
-        SetDirection(selectedDirection);
-        timerToChangeDirection = 0.0f;
-        changeDirection = false;
-        isBloqued = false;
+        actualPosX = (int)transform.position.x;
+        actualPosZ = (int)transform.position.z;
+        dir = Direction.Left;
+        directions = new Vector3[maxDirections];
+        directions[(int)Direction.Up] = Vector3.forward;
+        directions[(int)Direction.Back] = Vector3.back;
+        directions[(int)Direction.Left] = Vector3.left;
+        directions[(int)Direction.Right] = Vector3.right;
     }
-
     void Update()
     {
         MoveEnemy();
-        CheckPath(direction);
-        ChangeDirection();
+        DetectBlockedRoute();
+
+        if (Moved())
+            NewRoute();
+
+    }
+    void MoveEnemy()
+    {
+        transform.position += directions[(int)dir] * speed * Time.deltaTime;
+        transform.LookAt(transform.position + directions[(int)dir]);
+    }
+    void DetectBlockedRoute()
+    {
+        Ray ray = new Ray(transform.position, directions[(int)dir]);
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.yellow);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, distance))
+        {
+            if (hit.transform.gameObject.tag == "Enemy" || hit.transform.gameObject.tag == "Bomb")
+            {
+                GoBack();
+                return;
+            }
+            else if (hit.transform.gameObject.tag == "NormalColumn" || hit.transform.gameObject.tag == "DestructibleColumn")
+            {
+                Debug.Log("Entrooo");
+                NewRoute();
+            }
+            else if (hit.transform.gameObject.tag == "Player")
+            {
+                GoBack();
+            }
+        }
+    }
+    bool Moved()
+    {
+        if (actualPosX != (int)transform.position.x || actualPosZ != (int)transform.position.z)
+        {
+            actualPosX = (int)transform.position.x;
+            actualPosZ = (int)transform.position.z;
+            return true;
+        }
+        return false;
+    }
+    void NewRoute()
+    {
+        int maxPossibilitiesToNewRoute = 10;
+        int selectNewPos = Random.Range(0, maxPossibilitiesToNewRoute);
+        if (selectNewPos != 0 && !CheckForObstacle((int)dir))
+            return;
+
+        int actualDir = (int)dir;
+        int newDir;
+        do
+        {
+            newDir = Random.Range(0, maxDirections);
+        } while (actualDir == newDir || CheckForObstacle(newDir));
+        dir = (Direction)newDir;
+        return;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.tag == "DestructibleColumn")
-    //        ChangeSpawnPos();
-    //}
-    //
-    //void ChangeSpawnPos()
-    //{
-    //
-    //}
+    bool CheckForObstacle(int newDir)
+    {
+        Ray ray = new Ray(transform.position, directions[newDir]);
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.yellow);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, distance))
+        {
+            if (hit.transform.gameObject.tag == "Enemy" || hit.transform.gameObject.tag == "Bomb" || hit.transform.gameObject.tag == "DestructibleColumn" || hit.transform.gameObject.tag == "NormalColumn" || hit.transform.gameObject.tag == "Player")
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        return false;
+    }
 
-    void SetDirection(Directions dir)
+    void GoBack()
     {
         switch (dir)
         {
-            case Directions.Forward:
-                direction = transform.forward;
-                lastDirection = direction;
+            case Direction.Up:
+                dir = Direction.Back;
                 break;
-            case Directions.Right:
-                direction = transform.right;
-                lastDirection = direction;
+            case Direction.Back:
+                dir = Direction.Up;
                 break;
-            case Directions.Left:
-                direction = -transform.right;
-                lastDirection = direction;
+            case Direction.Right:
+                dir = Direction.Left;
                 break;
-            case Directions.Back:
-                direction = -transform.forward;
-                lastDirection = direction;
+            case Direction.Left:
+                dir = Direction.Right;
                 break;
         }
-    }
-
-    void MoveEnemy()
-    {
-        transform.position += direction * speed * Time.deltaTime;
-        transform.LookAt(transform.position + direction);
-    }
-
-    void CheckPath(Vector3 dir)
-    {
-        Ray ray = new Ray(transform.position, dir);
-        RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction * raycastSize, Color.red);
-        if(Physics.Raycast(ray, out hit, raycastSize))
-        {
-            if (hit.collider.gameObject.tag == "NormalColumn" || hit.collider.gameObject.tag == "DestructibleColumn" || hit.collider.gameObject.tag == "Enemy")
-                ReverseDirection(selectedDirection);
-        }
-    }
-
-    void ReverseDirection(Directions selectedDirection)
-    {
-        switch (selectedDirection)
-        {
-            case Directions.Forward:
-                direction = -transform.forward;
-                lastDirection = direction;
-                break;
-            case Directions.Right:
-                direction = -transform.right;
-                lastDirection = direction;
-                break;
-            case Directions.Left:
-                direction = transform.right;
-                lastDirection = direction;
-                break;
-            case Directions.Back:
-                direction = transform.forward;
-                lastDirection = direction;
-                break;
-        }
-    }
-
-    void ChangeDirection()
-    {
-        if (timeToChangeDirection >= timerToChangeDirection)
-            timerToChangeDirection += Time.deltaTime;
-
-        Debug.Log(timerToChangeDirection);
-
-        if((timerToChangeDirection >= timeToChangeDirection && !changeDirection) || (timerToChangeDirection >= timeToChangeDirection && isBloqued))
-        {
-            int min = 0;
-            int max = 3;
-            int value = Random.Range(min, max);
-            Debug.Log("el random es: " + value);
-            switch (value)
-            {
-                case 0:
-                    direction = transform.forward;
-                    newDirection = direction;
-                    changeDirection = true;
-                    isBloqued = false;
-                    break;
-                case 1:
-                    direction = transform.right;
-                    newDirection = direction;
-                    changeDirection = true;
-                    isBloqued = false;
-                    break;
-                case 2:
-                    direction = -transform.right;
-                    newDirection = direction;
-                    changeDirection = true;
-                    isBloqued = false;
-                    break;
-                case 3:
-                    direction = -transform.forward;
-                    newDirection = direction;
-                    changeDirection = true;
-                    isBloqued = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (changeDirection)
-        {
-            timerToChangeDirection = 0.0f;
-            changeDirection = false;
-        }
-        if(lastDirection == newDirection)
-            isBloqued = true;
     }
 }
