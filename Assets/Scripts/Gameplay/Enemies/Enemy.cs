@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     int actualPosX;
     int actualPosZ;
     int maxDirections = 4;
+
+    static public event Action enemyDead;
     void Start()
     {
         actualPosX = (int)transform.position.x;
@@ -79,7 +81,7 @@ public class Enemy : MonoBehaviour
     void NewRoute()
     {
         int maxPossibilitiesToNewRoute = 10;
-        int selectNewPos = Random.Range(0, maxPossibilitiesToNewRoute);
+        int selectNewPos = UnityEngine.Random.Range(0, maxPossibilitiesToNewRoute);
         if (selectNewPos != 0 && !CheckForObstacle((int)dir))
             return;
 
@@ -87,7 +89,7 @@ public class Enemy : MonoBehaviour
         int newDir;
         do
         {
-            newDir = Random.Range(0, maxDirections);
+            newDir = UnityEngine.Random.Range(0, maxDirections);
         } while (actualDir == newDir || CheckForObstacle(newDir));
         dir = (Direction)newDir;
         return;
@@ -127,5 +129,10 @@ public class Enemy : MonoBehaviour
                 dir = Direction.Right;
                 break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        enemyDead?.Invoke();
     }
 }

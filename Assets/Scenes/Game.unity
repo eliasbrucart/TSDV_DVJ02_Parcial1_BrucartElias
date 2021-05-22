@@ -168,8 +168,9 @@ MonoBehaviour:
   maxX: 8
   minZ: 13
   maxZ: -8
-  enemiesAmount: 3
+  enemiesAmount: 1
   spawnDesColumn: {fileID: 1730122475}
+  enemiesAlive: 0
 --- !u!4 &474762274
 Transform:
   m_ObjectHideFlags: 0
@@ -383,9 +384,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1589962281, guid: b203ebddf4e064f49b1e3ce04f8ae141, type: 3}
+      propertyPath: enemySpawner
+      value: 
+      objectReference: {fileID: 474762273}
+    - target: {fileID: 1589962281, guid: b203ebddf4e064f49b1e3ce04f8ae141, type: 3}
       propertyPath: spawnDesColumn
       value: 
       objectReference: {fileID: 1730122475}
+    - target: {fileID: 2570615184258427623, guid: b203ebddf4e064f49b1e3ce04f8ae141,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 6823092088739654387, guid: b203ebddf4e064f49b1e3ce04f8ae141,
         type: 3}
       propertyPath: m_RootOrder
@@ -441,10 +451,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6823092088739654390, guid: b203ebddf4e064f49b1e3ce04f8ae141,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6823092088739654391, guid: b203ebddf4e064f49b1e3ce04f8ae141,
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823092088739654391, guid: b203ebddf4e064f49b1e3ce04f8ae141,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b203ebddf4e064f49b1e3ce04f8ae141, type: 3}

@@ -3,6 +3,7 @@
 public class Door : MonoBehaviour
 {
     [SerializeField] private SpawnDesColumn spawnDesColumn;
+    [SerializeField] private EnemySpawner enemySpawner;
     private int x;
     private int z;
     public bool isOpen;
@@ -10,6 +11,12 @@ public class Door : MonoBehaviour
     {
         isOpen = false;
         SpawnDoor();
+    }
+
+    private void Update()
+    {
+        if (enemySpawner.enemiesAlive <= 0)
+            isOpen = true;
     }
 
     private void OnTriggerEnter(Collider other)
