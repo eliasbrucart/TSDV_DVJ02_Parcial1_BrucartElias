@@ -168,7 +168,7 @@ MonoBehaviour:
   maxX: 8
   minZ: 13
   maxZ: -8
-  enemiesAmount: 1
+  enemiesAmount: 3
   spawnDesColumn: {fileID: 1730122475}
   enemiesAlive: 0
   enemyDamage: 100
