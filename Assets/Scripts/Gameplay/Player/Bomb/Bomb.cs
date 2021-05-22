@@ -51,7 +51,10 @@ public class Bomb : MonoBehaviour
             if (hit.collider.gameObject.tag == "DestructibleColumn")
                 Destroy(hit.collider.gameObject);
             if(hit.collider.gameObject.tag == "Enemy")
+            {
                 GameManager.instanceGameManager.AddPoints();
+                Destroy(hit.collider.gameObject);
+            }
             if (hit.collider.gameObject.tag == "Player")
             {
                 PlayerReciveDamage?.Invoke();
