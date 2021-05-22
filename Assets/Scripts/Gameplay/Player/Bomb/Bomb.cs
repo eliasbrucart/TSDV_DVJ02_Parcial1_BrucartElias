@@ -48,12 +48,13 @@ public class Bomb : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distanceRay))
         {
-            if (hit.collider.gameObject.tag == "DestructibleColumn" || hit.collider.gameObject.tag == "Enemy")
+            if (hit.collider.gameObject.tag == "DestructibleColumn")
                 Destroy(hit.collider.gameObject);
+            if(hit.collider.gameObject.tag == "Enemy")
+                GameManager.instanceGameManager.AddPoints();
             if (hit.collider.gameObject.tag == "Player")
             {
                 PlayerReciveDamage?.Invoke();
-                Debug.Log("toca con player");
             }
         }
         Debug.DrawRay(ray.origin, ray.direction, Color.red);

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance{ get { return instanceGameManager; } }
 
     [SerializeField] private Player player;
+    [SerializeField] private EnemySpawner enemySpawner;
+    public int points;
 
     private void Awake()
     {
@@ -29,5 +31,10 @@ public class GameManager : MonoBehaviour
     {
         if (player.lives == 0)
             ScenesManager.instanceScenesManager.ChangeScene("GameOver");
+    }
+
+    public void AddPoints()
+    {
+        points += enemySpawner.enemyDamage;
     }
 }

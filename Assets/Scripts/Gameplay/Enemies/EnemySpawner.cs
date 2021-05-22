@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] SpawnDesColumn spawnDesColumn;
 
     public int enemiesAlive = 0;
+    public int enemyDamage;
 
     private int centerOnX = 12;
     private int centerOnZ = 8;
