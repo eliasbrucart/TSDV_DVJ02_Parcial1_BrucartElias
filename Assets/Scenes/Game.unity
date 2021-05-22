@@ -168,7 +168,7 @@ MonoBehaviour:
   maxX: 8
   minZ: 13
   maxZ: -8
-  enemiesAmount: 1
+  enemiesAmount: 3
   spawnDesColumn: {fileID: 1730122475}
   enemiesAlive: 0
 --- !u!4 &474762274
@@ -1313,6 +1313,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6778170270246383427, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
+        type: 3}
+      propertyPath: lives
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5363144025385704816, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
         type: 3}
       propertyPath: m_RootOrder

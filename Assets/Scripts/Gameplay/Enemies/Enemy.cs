@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
             }
             else if (hit.transform.gameObject.tag == "Player")
             {
+                FindObjectOfType<Player>().ReciveDamage();
                 GoBack();
             }
         }

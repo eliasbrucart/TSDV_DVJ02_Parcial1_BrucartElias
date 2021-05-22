@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject bombPrefab;
     [SerializeField] private bool canSpawnBomb;
 
-    public int lives { get; set; }
+    public int lives;
     public Bomb bomb;
 
     void Start()
@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
         canSpawnBomb = true;
         Bomb.BombExploded += BombExploded;
         Bomb.PlayerReciveDamage += ReciveDamage;
-        lives = 2;
     }
     void Update()
     {
@@ -82,7 +81,7 @@ public class Player : MonoBehaviour
         canSpawnBomb = true;
     }
 
-    void ReciveDamage()
+    public void ReciveDamage()
     {
         if(lives > 0)
             lives--;
