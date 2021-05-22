@@ -1318,6 +1318,10 @@ PrefabInstance:
       propertyPath: lives
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 130010574, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 5363144025385704816, guid: 6c63e0f5d1e2fd44fb413e7de708e4e3,
         type: 3}
       propertyPath: m_RootOrder

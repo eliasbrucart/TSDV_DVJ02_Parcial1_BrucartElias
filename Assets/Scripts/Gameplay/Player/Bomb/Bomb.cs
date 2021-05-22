@@ -6,6 +6,7 @@ public class Bomb : MonoBehaviour
 {
     [SerializeField] private int damage;
     [SerializeField] private float timeToExplode;
+    [SerializeField] private float distanceRay;
 
     private float timerToExplode;
     private bool destroyed;
@@ -45,7 +46,7 @@ public class Bomb : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, dir);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 3.0f))
+        if (Physics.Raycast(ray, out hit, distanceRay))
         {
             if (hit.collider.gameObject.tag == "DestructibleColumn" || hit.collider.gameObject.tag == "Enemy")
                 Destroy(hit.collider.gameObject);

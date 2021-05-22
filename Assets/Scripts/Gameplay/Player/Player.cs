@@ -28,19 +28,19 @@ public class Player : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !CheckColumn(Vector3.forward))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !CheckFreeWay(Vector3.forward))
         {
             point += Vector3.forward;
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow) && !CheckColumn(Vector3.back))
+        if(Input.GetKeyDown(KeyCode.DownArrow) && !CheckFreeWay(Vector3.back))
         {
             point += Vector3.back;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && !CheckColumn(Vector3.left))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !CheckFreeWay(Vector3.left))
         {
             point += Vector3.left;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !CheckColumn(Vector3.right))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !CheckFreeWay(Vector3.right))
         {
             point += Vector3.right;
         }
@@ -56,13 +56,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private bool CheckColumn(Vector3 dir)
+    private bool CheckFreeWay(Vector3 dir)
     {
         transform.LookAt(transform.position + dir);
         Ray ray = new Ray(transform.position, dir);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, distanceRayCast))
-            if (hit.collider.gameObject.tag == "NormalColumn" || hit.collider.gameObject.tag == "DestructibleColumn")
+            if (hit.collider.gameObject.tag == "NormalColumn" || hit.collider.gameObject.tag == "DestructibleColumn" || hit.collider.gameObject.tag == "Bomb" || hit.collider.gameObject.tag == "Enemy")
                 return true;
         return false;
     }
